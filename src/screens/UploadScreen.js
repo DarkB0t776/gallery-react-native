@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
-import {View, Text, StyleSheet, Button, Image} from 'react-native';
+import React from 'react';
+import {View, StyleSheet, Image} from 'react-native';
+import {Button} from 'react-native-elements';
 import ImagePicker from 'react-native-image-picker';
 import {connect} from 'react-redux';
 import {saveImage} from '../actions/index';
@@ -28,16 +29,24 @@ const UploadScreen = props => {
     });
 
   return (
-    <View>
-      <Button title="Upload" onPress={getImage} />
+    <View style={styles.container}>
+      <Button
+        title="Get Image"
+        onPress={getImage}
+        containerStyle={styles.btnContainer}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  image: {
-    width: 100,
-    height: 100,
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  btnContainer: {
+    width: '50%',
   },
 });
 
