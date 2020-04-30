@@ -23,20 +23,43 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <Tab.Navigator
+          tabBarOptions={{
+            labelStyle: {
+              fontSize: 15,
+              top: 10,
+            },
+            tabStyle: {
+              top: 10,
+              height: 40,
+            },
+            style: {
+              height: 85,
+            },
+            activeTintColor: 'red',
+          }}
           screenOptions={({route}) => ({
-            tabBarIcon: ({focused, color, size}) => {
+            tabBarIcon: ({focused}) => {
               let icon;
+              const size = 30;
               if (route.name === 'Images') {
                 icon = focused ? (
-                  <EntypoIcon name="images" size={30} style={{color: 'red'}} />
+                  <EntypoIcon
+                    name="images"
+                    size={size}
+                    style={{color: 'red'}}
+                  />
                 ) : (
-                  <EntypoIcon name="images" size={30} />
+                  <EntypoIcon name="images" size={size} />
                 );
               } else if (route.name === 'Upload') {
                 icon = focused ? (
-                  <EntypoIcon name="upload" size={30} style={{color: 'red'}} />
+                  <EntypoIcon
+                    name="upload"
+                    size={size}
+                    style={{color: 'red'}}
+                  />
                 ) : (
-                  <EntypoIcon name="upload" size={30} />
+                  <EntypoIcon name="upload" size={size} />
                 );
               }
               return icon;
