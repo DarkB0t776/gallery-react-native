@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, Button, Image} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
+import {connect} from 'react-redux';
+import {saveImage} from '../actions/index';
 
-const UploadScreen = () => {
-  const [image, setImage] = useState('');
-
+const UploadScreen = props => {
   const options = {
     title: 'Select Avatar',
-    customButtons: [{name: 'fb', title: 'Choose Photo from Facebook'}],
     storageOptions: {
       skipBackup: true,
       path: 'images',
@@ -24,14 +23,13 @@ const UploadScreen = () => {
         console.log('User tapped custom button: ', response.customButton);
       } else {
         const source = {uri: response.uri};
-        setImage(source);
+        props.saveImage(source);
       }
     });
 
   return (
     <View>
       <Button title="Upload" onPress={getImage} />
-      <Image source={image} style={styles.image} />
     </View>
   );
 };
@@ -43,4 +41,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UploadScreen;
+export default connect(
+  null,
+  {saveImage},
+)(UploadScreen);

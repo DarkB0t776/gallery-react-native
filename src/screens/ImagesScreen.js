@@ -1,14 +1,19 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
+import {connect} from 'react-redux';
 
-const ImagesScreen = () => {
-  return (
-    <View>
-      <Text>Images Screen</Text>
-    </View>
-  );
+const ImagesScreen = props => {
+  const renderImages = () => {
+    return props.images.map(img => {
+      return 1;
+    });
+  };
+
+  return <View />;
 };
 
 const styles = StyleSheet.create({});
 
-export default ImagesScreen;
+const mapStateToProps = state => ({images: state.images});
+
+export default connect()(ImagesScreen);
