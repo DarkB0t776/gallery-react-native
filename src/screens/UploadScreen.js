@@ -4,8 +4,7 @@ import {Button} from 'react-native-elements';
 import ImagePicker from 'react-native-image-picker';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {saveImage} from '../actions/index';
-import {fetchImagesRequest} from '../actions';
+import {saveImage, fetchImagesRequest} from '../actions/index';
 
 const UploadScreen = props => {
   useEffect(() => {
@@ -26,8 +25,6 @@ const UploadScreen = props => {
         console.log('User cancelled image picker');
       } else if (response.error) {
         console.log('ImagePicker Error: ', response.error);
-      } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
       } else {
         const source = {uri: response.uri};
         props.saveImage(source);

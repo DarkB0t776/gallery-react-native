@@ -12,7 +12,6 @@ import {connect} from 'react-redux';
 import {likeImage} from '../actions/index';
 
 const ImagesScreen = props => {
-  console.log(props.images);
   //Function to render images
   const renderImages = () => {
     return props.images.map(img => {
@@ -22,6 +21,9 @@ const ImagesScreen = props => {
       ) : (
         <Icon name="heart-o" type="font-awesome" size={30} />
       );
+
+      //Convert image date
+      const date = new Date(img.date).toLocaleDateString();
 
       return (
         <View key={img.id} style={styles.imageContainer}>
@@ -35,7 +37,7 @@ const ImagesScreen = props => {
             <TouchableOpacity onPress={() => props.likeImage(img.id)}>
               {heartIcon}
             </TouchableOpacity>
-            <Text>{img.date}</Text>
+            <Text>{date}</Text>
           </View>
         </View>
       );
@@ -44,7 +46,9 @@ const ImagesScreen = props => {
 
   return (
     <View style={styles.container}>
-      <ScrollView>{props.images ? renderImages() : null}</ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {props.images ? renderImages() : null}
+      </ScrollView>
     </View>
   );
 };

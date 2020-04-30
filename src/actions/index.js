@@ -7,7 +7,7 @@ import {
 
 export const saveImage = imageSrc => {
   return {
-    type: SAVE_IMAGE,
+    type: UPLOAD_IMAGE,
     payload: imageSrc,
   };
 };
@@ -20,6 +20,7 @@ export const likeImage = imageId => {
 };
 
 export const fetchImagesRequest = () => ({type: FETCH_IMAGES_REQUEST});
+
 export const fetchImagesSuccess = data => ({
   type: FETCH_IMAGES_SUCCESS,
   payload: data,

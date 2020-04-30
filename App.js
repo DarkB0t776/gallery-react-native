@@ -10,11 +10,13 @@ import EntypoIcon from 'react-native-vector-icons/Entypo';
 import UploadScreen from './src/screens/UploadScreen';
 import ImagesScreen from './src/screens/ImagesScreen';
 import SplashScreen from 'react-native-splash-screen';
+import mySaga from './src/saga/saga';
 
 const Tab = createBottomTabNavigator();
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(reducers, applyMiddleware(sagaMiddleware));
+sagaMiddleware.run(mySaga);
 
 const App = () => {
   useEffect(() => {

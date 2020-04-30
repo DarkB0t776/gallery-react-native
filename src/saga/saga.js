@@ -1,4 +1,4 @@
-import {call, put, takeEvery, takeLatest} from 'redux-saga/effects';
+import {call, put, takeLatest} from 'redux-saga/effects';
 
 import {FETCH_IMAGES_REQUEST} from '../types/index';
 import {fetchImagesSuccess} from '../actions';
