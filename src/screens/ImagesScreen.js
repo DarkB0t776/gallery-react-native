@@ -12,6 +12,7 @@ import {connect} from 'react-redux';
 import {likeImage} from '../actions/index';
 
 const ImagesScreen = props => {
+  console.log(props.images);
   //Function to render images
   const renderImages = () => {
     return props.images.map(img => {
@@ -25,7 +26,7 @@ const ImagesScreen = props => {
       return (
         <View key={img.id} style={styles.imageContainer}>
           <Image
-            source={img.src}
+            source={{uri: img.src}}
             style={{width: 250, height: 250}}
             PlaceholderContent={<ActivityIndicator />}
             containerStyle={{elevation: 5}}

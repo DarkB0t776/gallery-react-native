@@ -3,7 +3,8 @@ import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Provider} from 'react-redux';
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
+import createSagaMiddleware from 'redux-saga';
 import reducers from './src/reducers/index';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 import UploadScreen from './src/screens/UploadScreen';
@@ -12,7 +13,8 @@ import SplashScreen from 'react-native-splash-screen';
 
 const Tab = createBottomTabNavigator();
 
-const store = createStore(reducers);
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(reducers, applyMiddleware(sagaMiddleware));
 
 const App = () => {
   useEffect(() => {

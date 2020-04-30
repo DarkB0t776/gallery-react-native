@@ -1,13 +1,19 @@
-import React from 'react';
-import {View, StyleSheet, Image} from 'react-native';
+import React, {useEffect} from 'react';
+import {View, StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
 import ImagePicker from 'react-native-image-picker';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import {saveImage} from '../actions/index';
+import {fetchImagesRequest} from '../actions';
 
 const UploadScreen = props => {
+  useEffect(() => {
+    props.fetchImagesRequest();
+  }, []);
+
   const options = {
-    title: 'Select Avatar',
+    title: 'Upload Image',
     storageOptions: {
       skipBackup: true,
       path: 'images',
@@ -31,7 +37,7 @@ const UploadScreen = props => {
   return (
     <View style={styles.container}>
       <Button
-        title="Get Image"
+        title="Upload Image"
         onPress={getImage}
         containerStyle={styles.btnContainer}
       />
@@ -50,7 +56,10 @@ const styles = StyleSheet.create({
   },
 });
 
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({fetchImagesRequest, saveImage}, dispatch);
+
 export default connect(
   null,
-  {saveImage},
+  mapDispatchToProps,
 )(UploadScreen);
